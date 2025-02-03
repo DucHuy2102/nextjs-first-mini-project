@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IoHome } from 'react-icons/io5';
 import { MdArticle } from 'react-icons/md';
+import { IoIosCreate } from 'react-icons/io';
 
 const LINKS = [
     { name: 'Home', href: '/', icon: <IoHome /> },
     { name: 'Posts', href: '/posts', icon: <MdArticle /> },
+    { name: 'Create post', href: '/create-post', icon: <IoIosCreate /> },
 ];
 
 export default function Header() {
     const pathname = usePathname();
-    console.log(pathname);
 
     return (
         <header className='flex items-center justify-between py-4 px-10 border-b'>
