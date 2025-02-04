@@ -1,18 +1,9 @@
+import { prisma } from '@/lib/db';
 import Link from 'next/link';
 
-interface IPost {
-    id: number;
-    title: string;
-}
 export default async function PostsList() {
-    await new Promise((r) => setTimeout(r, 2000));
-    const res = await fetch('https://dummyjson.com/posts?limit=5');
-    const data = await res.json();
-    const {
-        posts,
-    }: {
-        posts: IPost[];
-    } = data;
+    const posts = await prisma.post.findMany();
+
     return (
         <ul>
             {posts.map((post) => (

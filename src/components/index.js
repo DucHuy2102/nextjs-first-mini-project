@@ -3,3 +3,4 @@ export { default as HeaderComponent } from './header';
 export { default as FooterComponent } from './footer';
 export { default as PostList } from './posts-list';
 export { default as LoadingComponent } from './loading';
+export { default as GoBackButtonComponent } from './go-back-page';

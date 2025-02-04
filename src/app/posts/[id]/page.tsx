@@ -1,15 +1,23 @@
 import { LoadingComponent } from '@/components';
+import { prisma } from '@/lib/db';
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 async function PostContent({ id }: { id: string }) {
-    await new Promise((r) => setTimeout(r, 2000));
-    const res = await fetch(`https://dummyjson.com/posts/${id}`);
-    const data = await res.json();
+    const data = await prisma.post.findUnique({
+        where: {
+            id: parseInt(id),
+        },
+    });
+
+    if (!data) {
+        notFound();
+    }
 
     return (
         <>
             <h1 className='text-4xl font-semibold mb-7'>{data.title}</h1>
-            <p className='max-w-[900px] mx-auto'>{data.body}</p>
+            <p className='max-w-[900px] mx-auto'>{data.content}</p>
         </>
     );
 }
